@@ -1,14 +1,15 @@
-# REALTEK RTL88x2B USB Linux Driver  
-**Current Driver Version**: 5.8.7.4  
-**Support Kernel**: 2.6.24 ~ 5.13 (with unofficial patches)  
+# REALTEK RTL88x2B USB Linux Driver
+**Current Driver Version**: 5.8.7.4
+**Support Kernel**: 2.6.24 ~ 5.15 (with unofficial patches)
 
-Official release note please check ReleaseNotes.pdf  
+Official release note please check ReleaseNotes.pdf
 
 **Note:** if you believe your device is **RTL8812BU** or **RTL8822BU** but after loaded the module no NIC shows up, the device ID maybe not in the driver whitelist. In this case please submit a new issue with `lsusb` result, and your device name, brand, website, etc.
 
 ## Supported Devices
 * ASUS AC1300 USB-AC55 B1
 * ASUS U2
+* ASUS USB-AC58
 * Dlink - DWA-181
 * Dlink - DWA-182
 * Edimax EW-7822ULC
@@ -20,6 +21,7 @@ Official release note please check ReleaseNotes.pdf
 * TP-Link Archer T4U V3
 * TP-Link Archer T4U PLus
 * TRENDnet TEW-808UBM
+* ZYXEL NWD6602
 
 And more.
 
@@ -72,9 +74,12 @@ sudo dkms uninstall -m rtl88x2bu -v git
 ```
 
 # USB 3.0 Support
-You can try use `modprobe 88x2bu rtw_switch_usb_mode=1` to force the adapter run under USB 3.0. But if your adapter/port/motherboard not support it, the driver will be in restart loop. Remove the parameter and reload the driver to restore. Alternatively, `modprobe 88x2bu rtw_switch_usb_mode=2` let\'s it run as USB 2 device. 
+You can try use `modprobe 88x2bu rtw_switch_usb_mode=1` to force the adapter run under USB 3.0. But if your adapter/port/motherboard not support it, the driver will be in restart loop. Remove the parameter and reload the driver to restore. Alternatively, `modprobe 88x2bu rtw_switch_usb_mode=2` let\'s it run as USB 2 device.
 
 Notice: If you had already loaded the moduel, use `modprobe -r 88x2bu` to unload it first.
+
+If you want to force a given mode permanently (even when switching the adapter across devices), create the file `/etc/modprobe.d/99-RTL88x2BU.conf` with the following content:
+`options 88x2bu rtw_switch_usb_mode=1`
 
 
 # Debug
