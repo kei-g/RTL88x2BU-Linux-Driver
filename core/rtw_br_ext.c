@@ -55,8 +55,6 @@
 
 #define NAT25_IPV4		01
 #define NAT25_IPV6		02
-#define NAT25_IPX		03
-#define NAT25_APPLE		04
 #define NAT25_PPPOE		05
 
 #define RTL_RELAY_TAG_LEN (ETH_ALEN)
@@ -840,6 +838,7 @@ int nat25_db_handle(_adapter *priv, struct sk_buff *skb, int method)
 			return -1;
 		}
 	}
+
 
 	/*---------------------------------------------------*/
 	/*                Handle PPPoE frame                */
